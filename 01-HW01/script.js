@@ -58,7 +58,7 @@ function makeBusiness(owner, cash, emp, director = 'Victor') {
    ${emp}`);
     console.log('And we have a sponsors: ');
     //console.log.apply(null, sumSponsors);
-    console.log(sumSponsors);
+    console.log(...sumSponsors);
     console.log(`Note. Be careful with ${eu[0]}. It's a huge risk.`);
 }
 //makeBusiness.apply(null, ['Sam', null, money, employersNames]);
