@@ -1,5 +1,5 @@
 
-var employers = ['Alex', '', 'ludmila', 'Viktor', '', ' oleg ', 'iNna  ', 'Ivan', 'Alex', 'Olga', ' Ann'];
+const employers = ['Alex', '', 'ludmila', 'Viktor', '', ' oleg ', 'iNna  ', 'Ivan', 'Alex', 'Olga', ' Ann'];
 
 /*var employersNames = [];
 for (var i = 0; i < employers.length; i++) {
@@ -8,22 +8,22 @@ for (var i = 0; i < employers.length; i++) {
 	}
 }
 console.log(employersNames);*/
-let employersNames1 = employers.filter(v => v.length > 0 && v.lenghth != '');
-console.log(employersNames1);
+const employersNames = employers.filter(emp => emp.length > 0).map(emp => emp.toLowerCase().trim());
+
 
 
 /*for (var i = 0; i < employersNames.length; i++) {
 	employersNames[i] = employersNames[i].toLowerCase().trim();
 }*/
-let employersNames = employersNames1.map(v => v.toLowerCase().trim()) ;
+
 console.log(employersNames);
 
-var sponsors = {
+const sponsors = {
     cash: [40000, 5000, 30400, 12000],
     eu: ['SRL', 'PLO', 'J&K'],
     rus: ['RusAuto', 'SBO']
 };
-let {eu, rus, cash} = sponsors; 
+const {eu, rus, cash} = sponsors; 
 
 /*function calcCash(own) {
     own = own || 0;
@@ -35,33 +35,34 @@ let {eu, rus, cash} = sponsors;
     return total;
 }*/
 
-function calcCash(own, everyCash){
+const calcCash = (own, everyCash) => {
     if((isNaN(own) || own == '' || own == null)){
         own = 0;
     }
-    let total = everyCash.reduce((a, b) => a + b, own);
+    let total = everyCash.reduce((accumulator, currentValue) => accumulator + currentValue, own);
     return total;
 }
 
 
 
-//var money = calcCash(null, sponsors.cash);
-let money = calcCash(null, cash);
-function makeBusiness(owner, director = 'Victor', cash, emp) {
+var money = calcCash(null, sponsors.cash);
+
+function makeBusiness(owner, cash, emp, director = 'Victor') {
+    const {eu, rus} = sponsors;
     //director = director || 'Victor';
     //var sumSponsors = sponsors.eu.concat(sponsors.rus, 'unexpected sponsor');
-    let sumSponsors = [...rus, ...eu];
+    const sumSponsors = [...rus, ...eu, 'unexpected sponsor'];
     /*console.log('We have a business. Owner: ' + owner + ', director: ' + director + '. Our budget: ' + cash + '. And our employers: ' +
     emp);*/
-    console.log(`We have a business. Owner:  ${owner}, director: ${director}. Our budget:  ${cash}. And our employers:
+    console.log(`We have a business. Owner:  ${owner}, director: ${director}. Our budget:  ${money}. And our employers:
    ${emp}`);
     console.log('And we have a sponsors: ');
     //console.log.apply(null, sumSponsors);
     console.log(sumSponsors);
-    console.log(`Note. Be careful with ${eu}. It's a huge risk.`);
+    console.log(`Note. Be careful with ${eu[0]}. It's a huge risk.`);
 }
 //makeBusiness.apply(null, ['Sam', null, money, employersNames]);
-makeBusiness(null, 'Sam', null, money, employersNames);
+makeBusiness(...['Sam',  money, employersNames]);
 
 /*homework.js
 homework.js. На экране.*/
